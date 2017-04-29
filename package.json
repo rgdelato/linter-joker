@@ -1,0 +1,35 @@
+{
+  "name": "linter-joker",
+  "main": "./index.js",
+  "version": "0.1.0",
+  "description": "A Linter package for joker (Clojure, ClojureScript)",
+  "keywords": [],
+  "repository": "",
+  "license": "MIT",
+  "engines": {
+    "atom": ">=1.0.0 <2.0.0"
+  },
+  "dependencies": {
+    "atom-linter": "^10.0.0",
+    "atom-package-deps": "^4.6.0"
+  },
+  "providedServices": {
+    "linter": {
+      "versions": {
+        "2.0.0": "provideLinter"
+      }
+    }
+  },
+  "package-deps": [
+    "linter",
+    "language-clojure"
+  ],
+  "configSchema": {
+    "jokerExecutablePath": {
+      "title": "Joker Path",
+      "description": "Path to the `joker` executable",
+      "type": "string",
+      "default": "joker"
+    }
+  }
+}
