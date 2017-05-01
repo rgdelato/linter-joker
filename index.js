@@ -43,10 +43,6 @@ export default {
 
             // console.log("linter-joker: data", data);
 
-            if (exitCode === 1) {
-              return [];
-            }
-
             if (exitCode === 0 && stderr) {
               const regex = /[^:]+:(\d+):(\d+): ([\s\S]+)/;
 
@@ -81,7 +77,7 @@ export default {
               return messages;
             }
 
-            return null;
+            return [];
           });
       }
     };

@@ -1,5 +1,7 @@
 # linter-joker package
 
-A short description of your package.
+This linter plugin for Linter provides an interface to [joker](https://github.com/candid82/joker). It will be used with files that have the "Clojure" syntax.
 
-![A screenshot of your package](https://f.cloud.github.com/assets/69169/2290250/c35d867a-a017-11e3-86be-cd7c5bf3ff9b.gif)
+## Installation
+
+Before using this package you will need to have [joker](https://github.com/candid82/joker) installed and available from your `$PATH`.
