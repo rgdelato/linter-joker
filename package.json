@@ -1,9 +1,14 @@
 {
   "name": "linter-joker",
   "main": "./index.js",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "An Atom Linter package for joker (Clojure, ClojureScript)",
-  "keywords": ["linter", "joker", "clojure", "clojurescript"],
+  "keywords": [
+    "linter",
+    "joker",
+    "clojure",
+    "clojurescript"
+  ],
   "repository": "https://github.com/rgdelato/linter-joker",
   "license": "MIT",
   "engines": {
