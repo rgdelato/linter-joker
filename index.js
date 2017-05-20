@@ -2,19 +2,25 @@
 
 import { CompositeDisposable } from "atom";
 
+const linterName = "linter-joker";
 let jokerExecutablePath;
+let lintsOnChange;
 
 export default {
   activate() {
     require("atom-package-deps").install("linter-joker");
-
-    const linterName = "linter-joker";
 
     this.subscriptions = new CompositeDisposable();
 
     this.subscriptions.add(
       atom.config.observe(`${linterName}.jokerExecutablePath`, value => {
         jokerExecutablePath = value;
+      })
+    );
+
+    this.subscriptions.add(
+      atom.config.observe(`${linterName}.lintsOnChange`, value => {
+        lintsOnChange = value;
       })
     );
   },
@@ -29,16 +35,24 @@ export default {
     return {
       name: "joker",
       scope: "file", // or 'project'
-      lintsOnChange: false, // or true
+      lintsOnChange: lintsOnChange,
       grammarScopes: ["source.clojure"],
       lint(textEditor) {
         const editorPath = textEditor.getPath();
+        const editorText = textEditor.getText();
 
         return helpers
-          .exec(jokerExecutablePath, ["--lint", editorPath], {
+          .exec(jokerExecutablePath, ["--lint", "--"], {
+            uniqueKey: linterName,
+            stdin: editorText,
             stream: "both"
           })
           .then(function(data) {
+            if (!data) {
+              // console.log("linter-joker: process killed", data);
+              return null;
+            }
+
             const { exitCode, stdout, stderr } = data;
 
             // console.log("linter-joker: data", data);
@@ -47,12 +61,12 @@ export default {
               const regex = /[^:]+:(\d+):(\d+): ([\s\S]+)/;
 
               const messages = stderr
-                .split(/\n|\r/)
+                .split(/[\r\n]+/)
                 .map(function(joke) {
                   const exec = regex.exec(joke);
 
                   if (!exec) {
-                    console.log("linter-joker: failed exec", joke);
+                    // console.log("linter-joker: failed exec", joke);
                     return null;
                   }
 
@@ -70,7 +84,7 @@ export default {
                     excerpt: `${excerpt}`
                   };
                 })
-                .filter(m => m);
+                .filter(m => m); // filter out null messages
 
               // console.log("linter-joker: messages", messages);
 

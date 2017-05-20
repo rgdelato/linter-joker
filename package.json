@@ -31,10 +31,16 @@
   ],
   "configSchema": {
     "jokerExecutablePath": {
-      "title": "Joker Path",
+      "title": "Joker path",
       "description": "Path to the `joker` executable",
       "type": "string",
       "default": "joker"
+    },
+    "lintsOnChange": {
+      "title": "Lints on change",
+      "description": "When disabled, only lints files on save",
+      "type": "boolean",
+      "default": "true"
     }
   }
 }
