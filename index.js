@@ -41,8 +41,14 @@ export default {
         const editorPath = textEditor.getPath();
         const editorText = textEditor.getText();
 
+        const command = editorPath.endsWith(".joke")
+          ? "--lintjoker"
+          : editorPath.endsWith(".cljs")
+              ? "--lintcljs"
+              : editorPath.endsWith(".edn") ? "--lintedn" : "--lintclj";
+
         return helpers
-          .exec(jokerExecutablePath, ["--lint", "--"], {
+          .exec(jokerExecutablePath, [command, "--"], {
             uniqueKey: linterName,
             stdin: editorText,
             stream: "both"
