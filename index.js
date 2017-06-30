@@ -1,6 +1,7 @@
 "use babel";
 
 import { CompositeDisposable } from "atom";
+import { dirname } from "path";
 
 const linterName = "linter-joker";
 let jokerExecutablePath;
@@ -49,6 +50,7 @@ export default {
 
         return helpers
           .exec(jokerExecutablePath, [command, "--"], {
+            cwd: dirname(editorPath),
             uniqueKey: linterName,
             stdin: editorText,
             stream: "both"
