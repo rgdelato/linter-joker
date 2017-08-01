@@ -41,12 +41,18 @@ export default {
       lint(textEditor) {
         const editorPath = textEditor.getPath();
         const editorText = textEditor.getText();
+        const [extension] = editorPath.match(/\.\w+$/gi) || [];
 
-        const command = editorPath.endsWith(".joke")
-          ? "--lintjoker"
-          : editorPath.endsWith(".cljs")
+        // console.log("linter-joker: file extension", extension);
+
+        const command =
+          extension === ".clj"
+            ? "--lintclj"
+            : extension === ".cljs"
               ? "--lintcljs"
-              : editorPath.endsWith(".edn") ? "--lintedn" : "--lintclj";
+              : extension === ".edn"
+                ? "--lintedn"
+                : extension === ".joke" ? "--lintjoker" : "--lintclj";
 
         return helpers
           .exec(jokerExecutablePath, [command, "--"], {
