@@ -4,4 +4,8 @@ This linter plugin for Linter provides an interface to [joker](https://github.co
 
 ## Installation
 
-Before using this package you will need to have [joker](https://github.com/candid82/joker) installed and available from your `$PATH`.
+Before using this package you will need to have [joker](https://github.com/candid82/joker) installed and available from your `$PATH`. You can download it [here](https://github.com/candid82/joker/releases) or install it via Homebrew with:
+
+```
+brew install candid82/brew/joker
+```
