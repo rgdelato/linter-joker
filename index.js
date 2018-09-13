@@ -55,7 +55,7 @@ export default {
                 : extension === ".joke" ? "--lintjoker" : "--lintclj";
 
         return helpers
-          .exec(jokerExecutablePath, [command, "--"], {
+          .exec(jokerExecutablePath, [command, "-"], {
             cwd: dirname(editorPath),
             uniqueKey: linterName,
             stdin: editorText,
@@ -71,7 +71,7 @@ export default {
 
             // console.log("linter-joker: data", data);
 
-            if (exitCode === 0 && stderr) {
+            if (exitCode === 1 && stderr) {
               const regex = /[^:]+:(\d+):(\d+): ([\s\S]+)/;
 
               const messages = stderr
