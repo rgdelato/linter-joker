@@ -1,7 +1,7 @@
 {
   "name": "linter-joker",
   "main": "./index.js",
-  "version": "2.0.0",
+  "version": "3.0.0",
   "description": "An Atom Linter package for joker (Clojure, ClojureScript)",
   "keywords": [
     "linter",
