@@ -50,7 +50,7 @@ export default {
             ? "--lintclj"
             : extension === ".cljs"
               ? "--lintcljs"
-              : extension === ".edn"
+              : extension === ".edn" || extension === ".joker"
                 ? "--lintedn"
                 : extension === ".joke" ? "--lintjoker" : "--lintclj";
 
